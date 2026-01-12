@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 const AffiliateSharing = () => {
   const [showCopyToast, setShowCopyToast] = useState(false);
   const [showDownloadToast, setShowDownloadToast] = useState(false);
+  const [showDownloadErrorToast, setShowDownloadErrorToast] = useState(false);
   const titlePage = "Liên kết tiếp thị";
   const titleCopyBtn = "Sao chép";
   const titleSendBtn = "Gửi liên kết";
@@ -30,14 +31,24 @@ const AffiliateSharing = () => {
       });
   }, [referralUrl]);
 
-  const downloadQRImage = useCallback(() => {
-    const link = document.createElement("a");
-    link.href = qrImageUrl;
-    link.download = "QR_Link_Coshare.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    showToast(setShowDownloadToast);
+  const handleDownloadQRImage = useCallback(async () => {
+    try {
+      const response = await fetch(qrImageUrl);
+      if (!response.ok) throw new Error("Failed to fetch image");
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "QR_Link_Coshare.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast(setShowDownloadToast);
+    } catch (error) {
+      console.error("Failed to download image:", error);
+      showToast(setShowDownloadErrorToast);
+    }
   }, [qrImageUrl]);
 
   return (
@@ -113,7 +124,7 @@ const AffiliateSharing = () => {
             </div>
             <div className="grid grid-cols-2 gap-3 relative">
               <button
-                onClick={downloadQRImage}
+                onClick={handleDownloadQRImage}
                 className="flex items-center justify-center gap-2 rounded-15 h-12 px-2 border border-primary/20 bg-white text-primary button-text transition-all active:scale-95 touch-manipulation"
               >
                 <Download size={20} />
@@ -130,6 +141,14 @@ const AffiliateSharing = () => {
                 id="toast-download"
               >
                 Đã tải ảnh về thiết bị
+              </div>
+              <div
+                className={`absolute -top-20 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[12px] px-3 py-1.5 rounded-full pointer-events-none z-10 whitespace-nowrap transition-opacity duration-300 ${
+                  showDownloadErrorToast ? "opacity-100" : "opacity-0"
+                }`}
+                id="toast-download-error"
+              >
+                Lỗi tải ảnh
               </div>
             </div>
           </section>
