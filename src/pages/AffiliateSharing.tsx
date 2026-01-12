@@ -5,13 +5,13 @@ const AffiliateSharing = () => {
   const [showCopyToast, setShowCopyToast] = useState(false);
   const [showDownloadToast, setShowDownloadToast] = useState(false);
   const [showDownloadErrorToast, setShowDownloadErrorToast] = useState(false);
-  const titlePage = "Liên kết tiếp thị";
+  const titlePage = "Chia sẻ liên kết";
   const titleCopyBtn = "Sao chép";
   const titleSendBtn = "Gửi liên kết";
   const referralUrl =
     "https://dev.coshare.vn/share?id=YHFKU8&name=VGhhbmggRGFv";
   const qrImageUrl =
-    "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://dev.coshare.vn/share?id=YHFKU8&name=VGhhbmggRGFv";
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuAD04TaCUozSX2ggHn1Onk3E2R4iwXhysTC9wIOtUv1jW6OPx9fe6dYWNsdH3fp_iVpPZf97yN69fgMtKxYI-OrxemLBIBD4U8fDdjm0MPpDyuuMZIJKaiS6wlDhsM5ct19PqNMN_f9siMdL5fg7twCeVhuY0YBsd8VGTlpYoqygJa8UeeGcic1D3SGoLXtQwLEQs5MGu9-KhTdytxZ_BNMjewyJKBXPVmA_P2_uu3r-kQL6KXCqpaGLsK6wSh3fxNm1Dnzght91uQ-";
 
   const showToast = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
     setter(true);

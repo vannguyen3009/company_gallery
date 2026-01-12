@@ -20,6 +20,11 @@ export default {
           },
           borderRadius: {
               "15": "15px",
+          },
+          spacing: {
+              "page": "16px",
+              "card-gap": "20px",
+              "inner": "16px",
           }
       },
   },
