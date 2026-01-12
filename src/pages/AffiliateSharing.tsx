@@ -1,12 +1,16 @@
-import { ArrowLeft, Copy, Download, Share2 } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { ArrowLeft, Copy, Download, Share2 } from "lucide-react";
+import { useCallback, useState } from "react";
 
 const AffiliateSharing = () => {
   const [showCopyToast, setShowCopyToast] = useState(false);
   const [showDownloadToast, setShowDownloadToast] = useState(false);
-
-  const referralUrl = "https://dev.coshare.vn/share?id=YHFKU8&name=VGhhbmggRGFv";
-  const qrImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://dev.coshare.vn/share?id=YHFKU8&name=VGhhbmggRGFv";
+  const titlePage = "Chia sẻ liên kết";
+  const titleCopyBtn = "Sao chép";
+  const titleSendBtn = "Gửi liên kết";
+  const referralUrl =
+    "https://dev.coshare.vn/share?id=YHFKU8&name=VGhhbmggRGFv";
+  const qrImageUrl =
+    "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://dev.coshare.vn/share?id=YHFKU8&name=VGhhbmggRGFv";
 
   const showToast = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
     setter(true);
@@ -16,17 +20,20 @@ const AffiliateSharing = () => {
   };
 
   const copyToClipboard = useCallback(() => {
-    navigator.clipboard.writeText(referralUrl).then(() => {
-      showToast(setShowCopyToast);
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
+    navigator.clipboard
+      .writeText(referralUrl)
+      .then(() => {
+        showToast(setShowCopyToast);
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
   }, [referralUrl]);
 
   const downloadQRImage = useCallback(() => {
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = qrImageUrl;
-    link.download = 'QR_Link_Coshare.png';
+    link.download = "QR_Link_Coshare.png";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -45,7 +52,7 @@ const AffiliateSharing = () => {
               <ArrowLeft />
             </button>
             <h2 className="text-white text-lg font-bold leading-tight tracking-tight flex-1">
-              Chia sẻ liên kết
+              {titlePage}
             </h2>
           </div>
         </header>
@@ -69,17 +76,15 @@ const AffiliateSharing = () => {
                 className="flex items-center justify-center gap-2 rounded-[15px] h-12 px-2 border border-[#151EB3]/20 bg-white text-[#151EB3] text-sm font-medium transition-all active:scale-95"
               >
                 <Copy size={20} />
-                <span className="truncate">Sao chép</span>
+                <span className="truncate">{titleCopyBtn}</span>
               </button>
-              <button
-                className="flex items-center justify-center gap-2 rounded-[15px] h-12 px-2 bg-[#151EB3] text-white text-sm font-medium transition-all active:scale-95"
-              >
+              <button className="flex items-center justify-center gap-2 rounded-[15px] h-12 px-2 bg-[#151EB3] text-white text-sm font-medium transition-all active:scale-95">
                 <Share2 size={20} />
-                <span className="truncate">Gửi liên kết</span>
+                <span className="truncate">{titleSendBtn}</span>
               </button>
               <div
                 className={`absolute -top-12 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[12px] px-3 py-1.5 rounded-full pointer-events-none z-10 whitespace-nowrap transition-opacity duration-300 ${
-                  showCopyToast ? 'opacity-100' : 'opacity-0'
+                  showCopyToast ? "opacity-100" : "opacity-0"
                 }`}
               >
                 Đã sao chép
@@ -110,15 +115,13 @@ const AffiliateSharing = () => {
                 <Download size={20} />
                 <span className="truncate">Tải về</span>
               </button>
-              <button
-                className="flex items-center justify-center gap-2 rounded-[15px] h-12 px-2 bg-[#151EB3] text-white text-sm font-medium transition-all active:scale-95"
-              >
+              <button className="flex items-center justify-center gap-2 rounded-[15px] h-12 px-2 bg-[#151EB3] text-white text-sm font-medium transition-all active:scale-95">
                 <Share2 size={20} />
                 <span className="truncate">Gửi ảnh</span>
               </button>
               <div
                 className={`absolute -top-12 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[12px] px-3 py-1.5 rounded-full pointer-events-none z-10 whitespace-nowrap transition-opacity duration-300 ${
-                  showDownloadToast ? 'opacity-100' : 'opacity-0'
+                  showDownloadToast ? "opacity-100" : "opacity-0"
                 }`}
               >
                 Đã tải ảnh về thiết bị
