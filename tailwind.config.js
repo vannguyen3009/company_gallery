@@ -8,10 +8,12 @@ export default {
   theme: {
       extend: {
           colors: {
-              "primary": "#1313ae",
-              "background-light": "#f6f6f8",
+              "primary": "#151EB3",
+              "app-bg": "#F0F2F5",
+              "secondary-bg": "#F6F7FB",
+              "text-primary": "#111827",
+              "border-light": "#E5E7EB",
               "background-dark": "#111121",
-              "surface-grey": "#F6F7FB",
           },
           fontFamily: {
               "sans": ["Manrope", "sans-serif"]
