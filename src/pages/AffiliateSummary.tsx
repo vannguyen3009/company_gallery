@@ -1,14 +1,13 @@
 import { ArrowLeft, ChevronRight } from 'lucide-react';
 import React from 'react';
+import { mockAffiliateData } from '../utils/mockData';
 
 const AffiliateSummary: React.FC = () => {
-  const customers = [
-    { id: 1, name: 'Ngọc Trâm' },
-    { id: 2, name: 'Hồng Nhung' },
-    { id: 3, name: 'Văn Thanh' },
-    { id: 4, name: 'Minh Hưng' },
-    { id: 5, name: 'Cẩm Thanh' },
-  ];
+  const formatCurrency = (amount: number) => {
+    return amount.toLocaleString('vi-VN') + 'đ';
+  };
+
+  const { monthlyIncome, yearlyIncome, customers } = mockAffiliateData;
 
   return (
     <div className="bg-background-light dark:bg-background-dark min-h-screen flex flex-col">
@@ -35,12 +34,12 @@ const AffiliateSummary: React.FC = () => {
                 </div>
                 <div className="space-y-4 flex-1">
                   <div className="flex items-center justify-between gap-4">
-                    <span className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">5.500.000đ</span>
+                    <span className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">{formatCurrency(monthlyIncome.direct)}</span>
                     <span className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full whitespace-nowrap">Trực tiếp</span>
                   </div>
                   <hr className="border-gray-100 dark:border-gray-700" />
                   <div className="flex items-center justify-between gap-4">
-                    <span className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">8.000.000đ</span>
+                    <span className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">{formatCurrency(monthlyIncome.system)}</span>
                     <span className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full whitespace-nowrap">Hệ thống</span>
                   </div>
                 </div>
@@ -54,12 +53,12 @@ const AffiliateSummary: React.FC = () => {
                 </div>
                 <div className="space-y-4 flex-1">
                   <div className="flex items-center justify-between gap-4">
-                    <span className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">45.500.000đ</span>
+                    <span className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">{formatCurrency(yearlyIncome.direct)}</span>
                     <span className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full whitespace-nowrap">Trực tiếp</span>
                   </div>
                   <hr className="border-gray-100 dark:border-gray-700" />
                   <div className="flex items-center justify-between gap-4">
-                    <span className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">68.000.000đ</span>
+                    <span className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">{formatCurrency(yearlyIncome.system)}</span>
                     <span className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full whitespace-nowrap">Hệ thống</span>
                   </div>
                 </div>
