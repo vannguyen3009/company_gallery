@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 const AffiliateSharing = () => {
   const [showCopyToast, setShowCopyToast] = useState(false);
   const [showDownloadToast, setShowDownloadToast] = useState(false);
-  const titlePage = "Chia sẻ liên kết";
+  const titlePage = "Liên kết tiếp thị";
   const titleCopyBtn = "Sao chép";
   const titleSendBtn = "Gửi liên kết";
   const referralUrl =
@@ -43,7 +43,7 @@ const AffiliateSharing = () => {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-app-bg">
       <div className="flex-1 flex flex-col items-center">
-        <header className="bg-primary pt-12 pb-5 px-page flex items-center w-full sticky top-0 z-50">
+        <header className="bg-primary pt-12 pb-5 px-4 flex items-center w-full sticky top-0 z-50">
           <div className="max-w-[480px] mx-auto w-full flex items-center gap-4">
             <button
               aria-label="Quay lại"
@@ -57,15 +57,18 @@ const AffiliateSharing = () => {
           </div>
         </header>
 
-        <main className="flex-1 w-full max-w-[480px] mx-auto p-page space-y-card-gap">
+        <main className="flex-1 w-full max-w-[480px] mx-auto p-4 space-y-5">
           {/* Referral Link Section */}
-          <section className="bg-white rounded-15 p-inner shadow-sm border border-border-light w-full">
+          <section className="bg-white rounded-15 p-4 shadow-sm border border-border-light w-full">
             <h3 className="text-text-primary card-title leading-tight mb-4 text-left">
-              Liên kết giới thiệu của bạn
+              Liên kết của bạn
             </h3>
             <div className="w-full mb-4">
               <div className="relative bg-secondary-bg rounded-15 p-4 min-h-[56px] flex items-center border border-border-light">
-                <span className="text-text-primary body-link leading-normal break-all">
+                <span
+                  className="text-text-primary body-link leading-normal break-all"
+                  id="referral-url"
+                >
                   {referralUrl}
                 </span>
               </div>
@@ -86,6 +89,7 @@ const AffiliateSharing = () => {
                 className={`absolute -top-12 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[12px] px-3 py-1.5 rounded-full pointer-events-none z-10 whitespace-nowrap transition-opacity duration-300 ${
                   showCopyToast ? "opacity-100" : "opacity-0"
                 }`}
+                id="toast-copy"
               >
                 Đã sao chép
               </div>
@@ -93,7 +97,7 @@ const AffiliateSharing = () => {
           </section>
 
           {/* QR Code Section */}
-          <section className="bg-white rounded-15 p-inner shadow-sm border border-border-light w-full">
+          <section className="bg-white rounded-15 p-4 shadow-sm border border-border-light w-full">
             <h3 className="text-text-primary card-title leading-tight mb-4 text-left">
               Mã QR liên kết của bạn
             </h3>
@@ -123,6 +127,7 @@ const AffiliateSharing = () => {
                 className={`absolute -top-12 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[12px] px-3 py-1.5 rounded-full pointer-events-none z-10 whitespace-nowrap transition-opacity duration-300 ${
                   showDownloadToast ? "opacity-100" : "opacity-0"
                 }`}
+                id="toast-download"
               >
                 Đã tải ảnh về thiết bị
               </div>
