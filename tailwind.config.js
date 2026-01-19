@@ -17,6 +17,12 @@ export default {
               "card-light": "#FFFFFF",
               "card-dark": "#1F2937",
               "secondary-orange": "#FFA000",
+              "background-light": "#F6F7FB",
+              "accent-blue": "#A9C7F7",
+              "soft-gray": "#6B7280"
+              "background-light": "#F6F7FB",
+              "accent-blue": "#A9C7F7",
+              "soft-gray": "#6B7280"
           },
           fontFamily: {
               "sans": ["Manrope", "sans-serif"],
